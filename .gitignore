@@ -2,4 +2,13 @@
 .vscode/*
 
 # build folder
-build/*
+build/
+
+# bin folder
+bin/
+
+# Temp files for test outputs
+temp
+
+# environment variables
+.env

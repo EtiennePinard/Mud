@@ -1,0 +1,12 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: sdl_backend
+Description: SDL backend for Mud
+Version: 0.1.0
+
+Requires: mud SDL3 SDL3_ttf SDL3_image
+Libs: -L${libdir} -lsdl_backend
+Cflags: -I${includedir}
