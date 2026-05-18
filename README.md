@@ -23,6 +23,15 @@ This design makes Mud:
 
 ---
 
+# Installation
+For those who simply want to install Mud on their system.
+```bash
+git clone https://github.com/EtiennePinard/Mud.git
+cd Mud
+make
+sudo make install
+```
+
 # Minimal Example
 
 A minimal Mud application does the following thing:
