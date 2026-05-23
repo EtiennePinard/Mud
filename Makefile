@@ -7,12 +7,12 @@ mud:
 
 backends:
 	for dir in backends/*; do \
-		$(MAKE) -C $$dir all; \
+	$(MAKE) -C $$dir all; \
 	done
 
 examples:
 	for dir in examples/*; do \
-		$(MAKE) -C $$dir all; \
+	$(MAKE) -C $$dir all; \
 	done
 
 tests:
@@ -20,18 +20,15 @@ tests:
 
 install:
 	$(MAKE) -C mud install
-	for dir in backends/*; do \
-		$(MAKE) -C $$dir install; \
-	done
 
 clean:
 	$(MAKE) -C mud clean
 	$(MAKE) -C tests clean
 	for dir in backends/*; do \
-		$(MAKE) -C $$dir clean; \
+	$(MAKE) -C $$dir clean; \
 	done
 	for dir in examples/*; do \
-		$(MAKE) -C $$dir clean; \
+	$(MAKE) -C $$dir clean; \
 	done
 
 help:
