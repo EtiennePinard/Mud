@@ -26,10 +26,10 @@ typedef int8_t i8;
  *
  */
 typedef struct Mud_Color {
-  u8 r;
-  u8 g;
-  u8 b;
-  u8 a;
+    u8 r;
+    u8 g;
+    u8 b;
+    u8 a;
 } Mud_Color;
 
 /**
@@ -38,9 +38,9 @@ typedef struct Mud_Color {
  *
  */
 typedef enum Mud_AppResult {
-  MUD_CONTINUE,
-  MUD_TERMINATE_WITH_SUCCESS,
-  MUD_TERMINATE_WITH_FAILURE
+    MUD_CONTINUE,
+    MUD_TERMINATE_WITH_SUCCESS,
+    MUD_TERMINATE_WITH_FAILURE
 } Mud_AppResult;
 
 /**
@@ -49,10 +49,10 @@ typedef enum Mud_AppResult {
  *
  */
 typedef struct Mud_Rect {
-  float x;
-  float y;
-  float width;
-  float height;
+    float x;
+    float y;
+    float width;
+    float height;
 } Mud_Rect;
 
 /**
@@ -61,8 +61,8 @@ typedef struct Mud_Rect {
  *
  */
 typedef struct Mud_Point {
-  float x;
-  float y;
+    float x;
+    float y;
 } Mud_Point;
 
 /**
@@ -73,8 +73,8 @@ typedef struct Mud_Point {
  * @return bool true if inside the rectangle false otherwise
  */
 static inline bool Mud_pointInRect(Mud_Point point, Mud_Rect rect) {
-  return rect.x <= point.x && point.x < rect.x + rect.width &&
-         rect.y <= point.y && point.y < rect.y + rect.height;
+    return rect.x <= point.x && point.x < rect.x + rect.width &&
+           rect.y <= point.y && point.y < rect.y + rect.height;
 }
 
 #endif /* A17649AB_016F_47B3_A218_BD971032F645 */

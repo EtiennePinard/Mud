@@ -8,9 +8,9 @@
 #include "mud_types.h"
 
 typedef struct Mud_RenderQueue {
-  Mud_Primitive *commands;
-  size_t count;
-  size_t capacity;
+    Mud_Primitive* commands;
+    size_t count;
+    size_t capacity;
 } Mud_RenderQueue;
 
 /**
@@ -21,12 +21,12 @@ typedef struct Mud_RenderQueue {
  * @return Mud_AppResult MUD_CONTINUE on success or MUD_TERMINATE_WITH_FAILURE
  * on failure
  */
-Mud_AppResult Mud_addPrimitive(Mud_App *app, Mud_Primitive *primitive);
+Mud_AppResult Mud_addPrimitive(Mud_App* app, Mud_Primitive* primitive);
 
 typedef enum Mud_ReRenderValue {
-  MUD_NO_RERENDER,
-  MUD_MAIN_THREAD_RERENDER,
-  MUD_OTHER_THREAD_RERENDER
+    MUD_NO_RERENDER,
+    MUD_MAIN_THREAD_RERENDER,
+    MUD_OTHER_THREAD_RERENDER
 } Mud_ReRenderValue;
 
 /**
@@ -36,6 +36,6 @@ typedef enum Mud_ReRenderValue {
  * @param app The state and events of the app
  * @return If the app should continue or terminate with failure or success
  */
-MUD_API Mud_AppResult Mud_render(Mud_App *app);
+MUD_API Mud_AppResult Mud_render(Mud_App* app);
 
 #endif /* FA551E0E_4D9F_4936_9CB1_C61ADB1746AE */

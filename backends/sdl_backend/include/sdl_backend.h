@@ -7,8 +7,8 @@
 #define MUDSDLBACKEND_VERSION_PATCH 0
 
 #define MUDSDLBACKEND_VERSION_STRING                                           \
-  (TO_STRING(MUDSDLBACKEND_VERSION_MAJOR) "." TO_STRING(                       \
-      MUDSDLBACKEND_VERSION_MINOR) "." TO_STRING(MUDSDLBACKEND_VERSION_PATCH))
+    (TO_STRING(MUDSDLBACKEND_VERSION_MAJOR) "." TO_STRING(                     \
+        MUDSDLBACKEND_VERSION_MINOR) "." TO_STRING(MUDSDLBACKEND_VERSION_PATCH))
 
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
@@ -22,13 +22,13 @@
  *
  */
 typedef struct MudSDLBackend_Options {
-  Uint32 sdlFlags; // The initialization flags for the sdl library
-  const char *window_title;
-  int windowX;
-  int windowY;
-  int windowWidth;
-  int windowHeight;
-  Uint32 windowFlags;
+    Uint32 sdlFlags; // The initialization flags for the sdl library
+    const char* window_title;
+    int windowX;
+    int windowY;
+    int windowWidth;
+    int windowHeight;
+    Uint32 windowFlags;
 } MudSDLBackend_Options;
 
 /**
@@ -45,8 +45,8 @@ typedef enum TextType { SINGLE_LINE, MULTI_LINE } TextType;
  *
  */
 typedef struct MudSDLBackend_FontData {
-  TTF_Font *fontToUse;
-  TextType textFitMethod;
+    TTF_Font* fontToUse;
+    TextType textFitMethod;
 } MudSDLBackend_FontData;
 
 /**
@@ -61,8 +61,8 @@ typedef struct MudSDLBackend_FontData {
  * @return MudSDLBackend_FontData* The data parameter or a heap allocated
  * pointer if data was NULL
  */
-MUD_API MudSDLBackend_FontData *
-MudSDLBackend_openFontData(MudSDLBackend_FontData *data, const char *fontPath,
+MUD_API MudSDLBackend_FontData*
+MudSDLBackend_openFontData(MudSDLBackend_FontData* data, const char* fontPath,
                            float pointSize, TextType textType);
 
 /**
@@ -71,7 +71,7 @@ MudSDLBackend_openFontData(MudSDLBackend_FontData *data, const char *fontPath,
  *
  * @param data The pointer to the font data to free
  */
-MUD_API void MudSDLBackend_closeFontData(MudSDLBackend_FontData *data);
+MUD_API void MudSDLBackend_closeFontData(MudSDLBackend_FontData* data);
 
 /**
  * @brief Information about rendering a Mud_TextureQuad
@@ -85,8 +85,8 @@ MUD_API void MudSDLBackend_closeFontData(MudSDLBackend_FontData *data);
  *
  */
 typedef struct MudSDLBackend_TextureData {
-  SDL_Texture *texture;
-  bool freeAfterRendering;
+    SDL_Texture* texture;
+    bool freeAfterRendering;
 } MudSDLBackend_TextureData;
 
 /**
@@ -101,9 +101,9 @@ typedef struct MudSDLBackend_TextureData {
  * @return MudSDLBackend_TextureData* The data parameter or a heap allocated
  * pointer if data was NULL
  */
-MUD_API MudSDLBackend_TextureData *
-MudSDLBackend_createTexture(MudSDLBackend_TextureData *data,
-                            const char *filename, bool freeAfterRendering);
+MUD_API MudSDLBackend_TextureData*
+MudSDLBackend_createTexture(MudSDLBackend_TextureData* data,
+                            const char* filename, bool freeAfterRendering);
 
 /**
  * @brief Frees the data inside the data pointer.
@@ -112,7 +112,7 @@ MudSDLBackend_createTexture(MudSDLBackend_TextureData *data,
  * @param textureData The texture data to destroy
  */
 MUD_API void
-MudSDLBackend_destroyTexture(MudSDLBackend_TextureData *textureData);
+MudSDLBackend_destroyTexture(MudSDLBackend_TextureData* textureData);
 
 /**
  * @brief Returns the SDL_Window pointer associated to this application.
@@ -121,7 +121,7 @@ MudSDLBackend_destroyTexture(MudSDLBackend_TextureData *textureData);
  *
  * @return SDL_Window* The SDL_Window pointer associated to this application
  */
-MUD_API SDL_Window *MudSDLBackend_getWindow();
+MUD_API SDL_Window* MudSDLBackend_getWindow();
 
 /**
  * @brief Returns the Mud SDL backend version string.
@@ -129,19 +129,19 @@ MUD_API SDL_Window *MudSDLBackend_getWindow();
  * @return MUD_API const* The Mud SDL backend version string formatted in
  * "major.minor.patch"
  */
-MUD_API const char *MudSDLBackend_getVersion();
+MUD_API const char* MudSDLBackend_getVersion();
 
 #ifndef NDEBUG // This code only runs on debug mode
 #define DEFAULT_PRIMITIVE_RENDERED_SIZE (16)
 typedef struct MudSDLBackend_DebugStats {
-  int framesStarted;
-  int framesFinished;
-  int nb_primitivesRendered;
+    int framesStarted;
+    int framesFinished;
+    int nb_primitivesRendered;
 
-  Mud_Primitive *primitivesRendered;
+    Mud_Primitive* primitivesRendered;
 } MudSDLBackend_DebugStats;
 
-MUD_API const MudSDLBackend_DebugStats *MudSDLBackend_getDebugStats();
+MUD_API const MudSDLBackend_DebugStats* MudSDLBackend_getDebugStats();
 MUD_API void MudSDLBackend_resetDebugStats();
 
 #endif /* NDEBUG */

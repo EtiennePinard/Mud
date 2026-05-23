@@ -12,7 +12,7 @@
  * @return Mud_AppResult If the app should continue or terminate with failure or
  * success
  */
-MUD_API extern Mud_AppResult MudBackend_init(void *options);
+MUD_API extern Mud_AppResult MudBackend_init(void* options);
 
 /**
  * @brief This function is called when the app terminates
@@ -40,7 +40,7 @@ MUD_API extern Mud_AppResult MudBackend_prepareRender(Mud_Color clearColor);
  * success
  */
 MUD_API extern Mud_AppResult
-MudBackend_renderPrimitive(Mud_Primitive *primitive);
+MudBackend_renderPrimitive(Mud_Primitive* primitive);
 
 /**
  * @brief Finishes the rendering process. This function is called
@@ -61,7 +61,7 @@ MUD_API extern Mud_AppResult MudBackend_finishRender();
  * @return Mud_AppResult If the app should continue or terminate with failure or
  * success
  */
-MUD_API extern Mud_AppResult MudBackend_popEvent(Mud_Event *outEvent);
+MUD_API extern Mud_AppResult MudBackend_popEvent(Mud_Event* outEvent);
 
 /**
  * @brief Returns the rectangle defining the window. The width and height of

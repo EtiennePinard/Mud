@@ -12,7 +12,7 @@ typedef u32 Mud_SceneId;
  * the sceneLayout array.
  *
  */
-typedef Mud_AppResult (*ComputeSceneLayout)(Mud_App *app);
+typedef Mud_AppResult (*ComputeSceneLayout)(Mud_App* app);
 
 /**
  * @brief This is function will free the scene's data.
@@ -21,7 +21,7 @@ typedef Mud_AppResult (*ComputeSceneLayout)(Mud_App *app);
  * of the user of the API to call this function.
  *
  */
-typedef void (*TerminateScene)(void *data, Mud_AppResult result);
+typedef void (*TerminateScene)(void* data, Mud_AppResult result);
 
 /**
  * @brief A struct representing a scene in Mud, which is the
@@ -29,12 +29,12 @@ typedef void (*TerminateScene)(void *data, Mud_AppResult result);
  *
  */
 typedef struct Mud_Scene {
-  Mud_SceneId sceneId;
-  Mud_Layout sceneLayout;
+    Mud_SceneId sceneId;
+    Mud_Layout sceneLayout;
 
-  ComputeSceneLayout computeSceneLayout;
-  TerminateScene terminateSceneFunction;
-  void *data;
+    ComputeSceneLayout computeSceneLayout;
+    TerminateScene terminateSceneFunction;
+    void* data;
 } Mud_Scene;
 
 #endif /* DDA40159_E2A5_4E9F_BDEC_D81CA46D19B3 */

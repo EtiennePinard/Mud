@@ -25,16 +25,16 @@ typedef struct Mud_QuitEvent {
 #define MUD_MIDDLE_MOUSE_BUTTON (3)
 
 typedef struct Mud_MouseButtonEvent {
-  Mud_EventType type;
-  // Which mouse button was pressed. Use MUD_LEFT_MOUSE_BUTTON and
-  // MUD_RIGHT_MOUSE_BUTTON for left and right mouse buttons. The indices of the
-  // other mouse buttons need to be strictly higher but can be defined by the
-  // backend.
-  u8 mouseButtonIndex;
-  u8 clicks; // The number of clicks did (1 for single clicks, 2 for double
-             // clicks, etc.)
-  float x;   // Window x coordinates
-  float y;   // Window y coordinates
+    Mud_EventType type;
+    // Which mouse button was pressed. Use MUD_LEFT_MOUSE_BUTTON and
+    // MUD_RIGHT_MOUSE_BUTTON for left and right mouse buttons. The indices of
+    // the other mouse buttons need to be strictly higher but can be defined by
+    // the backend.
+    u8 mouseButtonIndex;
+    u8 clicks; // The number of clicks did (1 for single clicks, 2 for double
+               // clicks, etc.)
+    float x;   // Window x coordinates
+    float y;   // Window y coordinates
 } Mud_MouseButtonEvent;
 
 #define MUD_LEFT_BUTTON_MASK (1 << 0)

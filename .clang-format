@@ -1,0 +1,63 @@
+---
+# BasedOnStyle: LLVM
+Language: Cpp
+
+# Indentation and Tabs
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+# Newlines & Whitespace
+DeriveLineEnding: false
+UseCRLF: false # Forces LF newlines
+# InsertNewlineAtEOF: true # Only available for clang-format 16
+
+# Brace Wrapping Rules (cpp_new_line_before_open_brace_* settings)
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  BeforeCatch: true # cpp_new_line_before_catch=true
+  BeforeElse: true # cpp_new_line_before_else=true
+  IndentBraces: false # cpp_indent_braces=false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+
+# Case and Control Flow Indentation
+IndentCaseLabels: false # cpp_indent_case_labels=false
+
+# Preprocessor and Namespaces
+IndentPPDirectives: None # cpp_indent_preprocessor=leftmost_column
+NamespaceIndentation: All # cpp_indent_namespace_contents=true
+
+# Spacing - Parentheses and Functions
+SpaceBeforeParens: ControlStatements # cpp_space_after_keywords_in_control_flow_statements=true
+SpaceInEmptyParentheses: false
+SpacesInParentheses: false # cpp_space_within_expression_parentheses=false
+
+# Spacing - Braces and Initializer Lists
+SpaceBeforeAssignmentOperators: true
+SpacesInContainerLiterals: true # cpp_space_within_initializer_list_braces=true
+# SpaceBeforeBlocks: true # cpp_space_before_block_open_brace=true
+
+# Spacing - Operators and Commas
+SpaceAroundPointerQualifiers: Default
+PointerAlignment: Left # cpp_space_pointer_reference_alignment=left
+SpaceAfterCStyleCast: false # cpp_space_after_cast_close_parenthesis=false
+SpacesInCStyleCastParentheses: false
+
+# Block and Code Wrapping
+AllowShortBlocksOnASingleLine: Always # cpp_wrap_preserve_blocks=one_liners
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: true
+
+Cpp11BracedListStyle: false
