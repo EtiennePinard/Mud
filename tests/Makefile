@@ -30,8 +30,8 @@ core: $(RUNNER)
 backend-sdl: $(RUNNER)
 	$(MAKE) -C $(BACKEND_SDL_DIR) DEBUG=1 all
 	$(MAKE) -C $(BACKEND_SDL_TEST_DIR) \
-		BUILD_DIR=../$(BUILD_DIR)/backend \
-		all
+	BUILD_DIR=../$(BUILD_DIR)/backend \
+	all
 	@files=$$(find $(BUILD_DIR)/backend/ -type f ! -name "*.d"); \
 	./$(RUNNER) $$files
 

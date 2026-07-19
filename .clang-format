@@ -58,6 +58,6 @@ SpacesInCStyleCastParentheses: false
 # Block and Code Wrapping
 AllowShortBlocksOnASingleLine: Always # cpp_wrap_preserve_blocks=one_liners
 AllowShortFunctionsOnASingleLine: All
-AllowShortIfStatementsOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 
 Cpp11BracedListStyle: false

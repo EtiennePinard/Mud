@@ -1,14 +1,16 @@
 include ../../mk/rules.mk
 CFLAGS += -fPIE
+BUILD_DIR ?= build
+NAME ?= example_mud_app
 
 APP_PATH := $(BUILD_DIR)/$(NAME)
 
 ASSET_SRC = ../assets
 ASSET_DST = $(BUILD_DIR)/assets
 
-.PHONY: all assets run clean
+.PHONY: all assets run clean help
 
-all: mud_common $(APP_PATH)
+all: $(APP_PATH)
 
 $(APP_PATH): $(OBJ)
 	$(CC) $^ $(LIBS) -o $@
@@ -23,9 +25,6 @@ assets: $(ASSET_DST)
 
 run: all assets
 	cd build && ./$(NAME)
-
-mud_common:
-	$(MAKE) -C $(COMMON_PATH) all
 
 clean:
 	rm -rf $(BUILD_DIR)

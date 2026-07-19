@@ -1,15 +1,8 @@
-include ../../.env
-
 NAME = sdl_backend
 SRC_DIR = src
 BUILD_DIR = build
 
-INCLUDES = \
- -Iinclude \
- -I"${MUD_INCLUDE_PATH}" \
- -I"${SDL_INCLUDE_PATH}" \
- -I"${SDL_TTF_INCLUDE_PATH}" \
- -I"${SDL_IMAGE_INCLUDE_PATH}"
+INCLUDES = $(shell pkg-config --cflags mud sdl3 sdl3-ttf sdl3-image)
 
 PREFIX ?= /usr/local
 

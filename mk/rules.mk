@@ -3,7 +3,7 @@ CFLAGS ?= -std=c11 -Wall -Wextra -Werror -MMD -MP
 
 ifeq ($(DEBUG), 1)
 	CFLAGS += -g -O0 -DDEBUG
-else 
+else
 	CFLAGS += -O3 -DNDEBUG
 endif
 
