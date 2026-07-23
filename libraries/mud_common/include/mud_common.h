@@ -104,6 +104,15 @@ static inline Mud_Rect MudCommon_centerRectInContainer(Mud_Rect rectToCenter,
 }
 
 /**
+ * @brief Request a rerender from the main thread as an event callback.
+ *
+ * @param event Any event
+ * @param app The app to send the main thread rerender request to.
+ * @return Mud_AppResult If the operation was successful or not.
+ */
+Mud_AppResult MudCommon_eventRequestRerender(Mud_Event* event, Mud_App* app);
+
+/**
  * @brief Sets the rerenderLayoutNextFrame field to MUD_MAIN_THREAD_RERENDER.
  * This will tell the Mud_render function to render the layout boxes and tells
  * it that this render request was from the main thread.
