@@ -39,14 +39,14 @@ Mud_AppResult onTopHover(Mud_Event* e, Mud_App* app) {
 
 static int bottomRendered = 0;
 static int topRendered = 0;
-Mud_AppResult renderBottom(Mud_Rect rect, Mud_App* app) {
-    (void)rect, (void)app;
+Mud_AppResult renderBottom(Mud_LayoutBox* box, Mud_App* app) {
+    (void)box, (void)app;
     check(bottomRendered == topRendered);
     bottomRendered++;
     return MUD_CONTINUE;
 }
-Mud_AppResult renderTop(Mud_Rect rect, Mud_App* app) {
-    (void)rect, (void)app;
+Mud_AppResult renderTop(Mud_LayoutBox* box, Mud_App* app) {
+    (void)box, (void)app;
     check(bottomRendered == topRendered + 1);
     topRendered++;
     return MUD_CONTINUE;

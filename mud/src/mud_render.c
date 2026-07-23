@@ -35,10 +35,10 @@ Mud_AppResult Mud_render(Mud_App* app) {
     Mud_Layout sceneLayout = app->scene.sceneLayout;
     Mud_AppResult result = MUD_CONTINUE;
     for (size_t index = 0; index < sceneLayout.numLayoutBox; index++) {
-        Mud_LayoutBox layoutBox = sceneLayout.layoutBoxes[index];
-        if (!layoutBox.isActive) continue;
-        Mud_RenderFunction renderFunction = layoutBox.renderFunction;
-        if (renderFunction) result = renderFunction(layoutBox.renderRect, app);
+        Mud_LayoutBox* layoutBox = &sceneLayout.layoutBoxes[index];
+        if (!layoutBox->isActive) continue;
+        Mud_RenderFunction renderFunction = layoutBox->renderFunction;
+        if (renderFunction) result = renderFunction(layoutBox, app);
         if (result != MUD_CONTINUE) return result;
     }
 

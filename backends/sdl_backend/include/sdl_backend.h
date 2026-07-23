@@ -13,7 +13,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 
-#include "mud.h"
+#include <mud.h>
 
 /**
  * @brief The options used to initialize the SDL backend. For

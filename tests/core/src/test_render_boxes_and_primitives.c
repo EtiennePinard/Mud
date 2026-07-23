@@ -44,7 +44,7 @@ static int textRendered = 0; // Lowest z-order
 static int filledQuadRendered = 0; // Middle low z-order
 static int borderQuadRendered = 0; // Middle high z-order
 static int textureQuadRendered = 0; // Highest z-order
-Mud_AppResult renderTextLayoutBox(Mud_Rect rect, Mud_App* app) {
+Mud_AppResult renderTextLayoutBox(Mud_LayoutBox* box, Mud_App* app) {
     check(textRendered == 0);
     check(filledQuadRendered == 0);
     check(borderQuadRendered == 0);
@@ -53,7 +53,7 @@ Mud_AppResult renderTextLayoutBox(Mud_Rect rect, Mud_App* app) {
     Mud_Primitive text = {
         .text = {
             .type = MUD_PRIMITIVE_TEXT,
-            .renderRect = rect,
+            .renderRect = box->renderRect,
             .color = {0, 0, 0, 1},
             .text = "Mud",
             .fontData = &fontData
@@ -61,7 +61,7 @@ Mud_AppResult renderTextLayoutBox(Mud_Rect rect, Mud_App* app) {
     };
     return Mud_addPrimitive(app, &text);
 }
-Mud_AppResult renderFilledQuadBox(Mud_Rect rect, Mud_App* app) {
+Mud_AppResult renderFilledQuadBox(Mud_LayoutBox* box, Mud_App* app) {
     check(textRendered == 1);
     check(filledQuadRendered == 0);
     check(borderQuadRendered == 0);
@@ -70,13 +70,13 @@ Mud_AppResult renderFilledQuadBox(Mud_Rect rect, Mud_App* app) {
     Mud_Primitive filledQuad = {
         .filledQuad = {
             .type = MUD_PRIMITIVE_FILLED_QUAD,
-            .renderRect = rect,
+            .renderRect = box->renderRect,
             .color = {0, 0, 1, 0}
         }
     };
     return Mud_addPrimitive(app, &filledQuad);
 }
-Mud_AppResult renderBorderQuadBox(Mud_Rect rect, Mud_App* app) {
+Mud_AppResult renderBorderQuadBox(Mud_LayoutBox* box, Mud_App* app) {
     check(textRendered == 1);
     check(filledQuadRendered == 1);
     check(borderQuadRendered == 0);
@@ -85,13 +85,13 @@ Mud_AppResult renderBorderQuadBox(Mud_Rect rect, Mud_App* app) {
     Mud_Primitive borderQuad = {
         .borderQuad = {
             .type = MUD_PRIMITIVE_BORDER_QUAD,
-            .renderRect = rect,
+            .renderRect = box->renderRect,
             .color = {0, 0, 1, 1}
         }
     };
     return Mud_addPrimitive(app, &borderQuad);
 }
-Mud_AppResult renderTextureQuad(Mud_Rect rect, Mud_App* app) {
+Mud_AppResult renderTextureQuad(Mud_LayoutBox* box, Mud_App* app) {
     check(textRendered == 1);
     check(filledQuadRendered == 1);
     check(borderQuadRendered == 1);
@@ -100,7 +100,7 @@ Mud_AppResult renderTextureQuad(Mud_Rect rect, Mud_App* app) {
     Mud_Primitive textureQuad = {
         .textureQuad = {
             .type = MUD_PRIMITIVE_TEXTURED_QUAD,
-            .renderRect = rect,
+            .renderRect = box->renderRect,
             .textureData = &textureData
         }
     };

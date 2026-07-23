@@ -7,11 +7,14 @@
 #include "mud_events.h"
 #include "mud_types.h"
 
-typedef Mud_AppResult (*Mud_RenderFunction)(Mud_Rect, Mud_App*);
+typedef struct Mud_LayoutBox Mud_LayoutBox;
 
-typedef struct Mud_LayoutBox {
+typedef Mud_AppResult (*Mud_RenderFunction)(Mud_LayoutBox*, Mud_App*);
+
+struct Mud_LayoutBox {
     bool isActive;
     Mud_Rect renderRect;
+    void* renderData;
     Mud_RenderFunction renderFunction;
     Mud_EventCallback onMouseButtonDown;
     Mud_EventCallback onMouseButtonUp;
@@ -19,7 +22,7 @@ typedef struct Mud_LayoutBox {
     Mud_EventCallback onMouseHovered;
     Mud_EventCallback onMouseExited;
     Mud_EventCallback onMouseWheelScrolled;
-} Mud_LayoutBox;
+};
 
 typedef struct Mud_Layout {
     Mud_Color bgColor;
