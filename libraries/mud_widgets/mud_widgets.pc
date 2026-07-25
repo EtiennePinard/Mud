@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: mud_widgets
+Description: Common widgets for mud
+Version: 0.1.0
+
+Libs: -L${libdir} -lmud -lmud_common -lmud_widgets
+Cflags: -I${includedir}
