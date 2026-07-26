@@ -53,7 +53,7 @@ void Mud_terminate(Mud_App* app, Mud_AppResult result) {
     }
 
     if (app->scene.terminateSceneFunction) {
-        app->scene.terminateSceneFunction(app->scene.data, result);
+        app->scene.terminateSceneFunction(&app->scene, result);
     }
 
     // Cleaning up after ourselves

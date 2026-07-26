@@ -7,6 +7,13 @@
 typedef u32 Mud_SceneId;
 
 /**
+ * @brief A struct representing a scene in Mud, which is the
+ * container of an app's layout.
+ *
+ */
+typedef struct Mud_Scene Mud_Scene;
+
+/**
  * @brief This function is called when it is the first time rendering a scene
  * or when the window size changes. This function is responsible for populating
  * the sceneLayout array.
@@ -21,20 +28,15 @@ typedef Mud_AppResult (*ComputeSceneLayout)(Mud_App* app);
  * of the user of the API to call this function.
  *
  */
-typedef void (*TerminateScene)(void* data, Mud_AppResult result);
+typedef void (*TerminateScene)(Mud_Scene* scene, Mud_AppResult result);
 
-/**
- * @brief A struct representing a scene in Mud, which is the
- * container of an app's layout.
- *
- */
-typedef struct Mud_Scene {
+struct Mud_Scene {
     Mud_SceneId sceneId;
     Mud_Layout sceneLayout;
 
     ComputeSceneLayout computeSceneLayout;
     TerminateScene terminateSceneFunction;
     void* data;
-} Mud_Scene;
+};
 
 #endif /* DDA40159_E2A5_4E9F_BDEC_D81CA46D19B3 */
