@@ -19,9 +19,7 @@
  * Typical usage:
  *
  * @code
- * static MudWidget_ButtonStyle playButton = {
- *     ...
- * };
+ * static MudWidget_ButtonStyle playButton = MudWidget_initButtonStyle(...)
  *
  * layoutBoxes[0] =
  *     MudWidget_makeButton(rect, &playButton);
@@ -37,13 +35,16 @@
 #define UUID_9990EE00_0294_47CB_AB3F_456109ED385C_H
 
 #include <mud.h>
+#include <stdlib.h>
+
+typedef void (*DestroyFontData)(void* fontData);
 
 typedef struct MudWidget_LabelStyle {
     char* text;
     void* fontData;
     Mud_Color textColor;
 } MudWidget_LabelStyle;
-Mud_LayoutBox MudWidget_makeLabels(Mud_Rect rect,
+Mud_LayoutBox MudWidget_makeLabel(Mud_Rect rect,
                                    const MudWidget_LabelStyle* style);
 
 typedef struct MudWidget_ButtonStyle {
@@ -52,13 +53,52 @@ typedef struct MudWidget_ButtonStyle {
     Mud_Color idleColor;
     Mud_Color hoverColor;
     Mud_Color pressedColor;
-    Mud_Color borderColor;
     Mud_Color textColor;
+    Mud_Color borderColor;
     float borderThickness;
 
 } MudWidget_ButtonStyle;
 Mud_LayoutBox MudWidget_makeButton(Mud_Rect rect,
                                    const MudWidget_ButtonStyle* style);
+
+/**
+ * @brief Initializes the non pointer fields of the ButtonStyle struct.
+ *
+ * @param buttonStyle The buttonStyle to initialize.
+ * @param idleColor The color when no interactions are happening.
+ * @param hoverColor The color when hovered.
+ * @param pressedColor The color when pressed.
+ * @param textColor The color of the button's label.
+ * @param borderColor The border color of the button.
+ * @param borderThickness The thickness of the border.
+ */
+static inline void
+MudWidget_initButtonStyle(MudWidget_ButtonStyle* buttonStyle,
+                          Mud_Color idleColor, Mud_Color hoverColor,
+                          Mud_Color pressedColor, Mud_Color textColor,
+                          Mud_Color borderColor, float borderThickness) {
+    buttonStyle->idleColor = idleColor;
+    buttonStyle->hoverColor = hoverColor;
+    buttonStyle->pressedColor = pressedColor;
+    buttonStyle->borderColor = borderColor;
+    buttonStyle->textColor = textColor;
+    buttonStyle->borderThickness = borderThickness;
+}
+
+/**
+ * @brief Frees the text and font data parameters in the button style struct.
+ * The fontData is first run passed to the destroyFontDataFunction.
+ *
+ * @param buttonStyle The button style to free.
+ * @param destroyFontDataFunction A function that closes the current font data.
+ */
+static inline void
+MudWidget_destroyButtonStyle(MudWidget_ButtonStyle* buttonStyle,
+                             DestroyFontData destroyFontDataFunction) {
+    free(buttonStyle->text);
+    destroyFontDataFunction(buttonStyle->fontData);
+    free(buttonStyle->fontData);
+}
 
 typedef struct MudWidget_CheckboxStyle {
     bool* checked;

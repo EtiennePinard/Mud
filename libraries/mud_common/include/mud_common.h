@@ -2,14 +2,19 @@
 #define CBB04BEA_DBCB_49C6_A352_DB16D626B1F3
 
 #include <mud.h>
+#include <stdlib.h>
 
 #define MudCommon_WHITE (Mud_Color){ 0xFF, 0xFF, 0xFF, 0xFF }
 #define MudCommon_BLACK (Mud_Color){ 0x00, 0x00, 0x00, 0xFF }
 
 #define MudCommon_returnOnFailure(mud_appResults)                              \
     do {                                                                       \
-        if ((mud_appResults) != MUD_CONTINUE)                                  \
-            return MUD_TERMINATE_WITH_SUCCESS;                                 \
+        if ((mud_appResults) != MUD_CONTINUE) return mud_appResults;           \
+    } while (0)
+
+#define MudCommon_exitOnFailure(mud_appResults)                                \
+    do {                                                                       \
+        if ((mud_appResults) != MUD_CONTINUE) exit(EXIT_FAILURE);              \
     } while (0)
 
 /**
@@ -59,6 +64,31 @@ Mud_AppResult MudCommon_addText(Mud_App* app, Mud_Rect renderRect,
  */
 Mud_AppResult MudCommon_addTextureQuad(Mud_App* app, Mud_Rect renderRect,
                                        void* textureData);
+
+/**
+ * @brief Allocates the layout boxes in the heap with the requested
+ * number of boxes. This function will free the layoutBoxes field if
+ * it is non NULL. If layoutBoxes was not allocated on the heap, set
+ * it to NULL before calling this function to avoid freeing stack
+ * memory.
+ *
+ * @param app The app to allocate the layout boxes to.
+ * @param numBoxes The number of boxes to allocate.
+ * @return Mud_AppResult If the operation was successful or not.
+ */
+static inline Mud_AppResult MudCommon_allocateLayoutBoxes(Mud_App* app,
+                                                          size_t numBoxes) {
+    if (app->scene.sceneLayout.layoutBoxes) {
+        free(app->scene.sceneLayout.layoutBoxes);
+    }
+    app->scene.sceneLayout.numLayoutBox = numBoxes;
+    app->scene.sceneLayout.layoutBoxes =
+        (Mud_LayoutBox*)malloc(sizeof(Mud_LayoutBox) * numBoxes);
+    if (!app->scene.sceneLayout.layoutBoxes) {
+        return MUD_TERMINATE_WITH_FAILURE;
+    }
+    return MUD_CONTINUE;
+}
 
 /**
  * @brief Scales a Mud_Rect to its parent following a widthRatio and
@@ -132,6 +162,16 @@ static inline void MudCommon_requestRenderFromMainThread(Mud_App* app) {
  */
 static inline void MudCommon_requestRenderFromOtherThread(Mud_App* app) {
     atomic_store(&app->rerenderLayoutNextFrame, MUD_OTHER_THREAD_RERENDER);
+}
+
+/**
+ * @brief Frees the scene.data and layoutBoxes fields.
+ * 
+ * @param app The app to free the fields from.
+ */
+static inline void MudCommon_destroySceneMemory(Mud_Scene* scene) {
+    free(scene->data);
+    free(scene->sceneLayout.layoutBoxes);
 }
 
 #endif /* CBB04BEA_DBCB_49C6_A352_DB16D626B1F3 */

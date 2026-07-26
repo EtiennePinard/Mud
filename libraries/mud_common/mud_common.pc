@@ -7,5 +7,5 @@ Name: mud_common
 Description: Common utilities for mud
 Version: 0.1.0
 
-Libs: -L${libdir} -lmud
+Libs: -L${libdir} -lmud -lmud_common
 Cflags: -I${includedir}
