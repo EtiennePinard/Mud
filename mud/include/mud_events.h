@@ -91,7 +91,7 @@ typedef union Mud_Event {
   Mud_WindowResizeEvent windowResize;
 } Mud_Event;
 
-typedef Mud_AppResult (*Mud_EventCallback)(Mud_Event *, Mud_App *);
+typedef Mud_AppResult (*Mud_GlobalEventCallback)(Mud_Event *, Mud_App *);
 
 typedef struct Mud_MouseState {
   bool holdingLeftMouseButton;
@@ -100,10 +100,10 @@ typedef struct Mud_MouseState {
 } Mud_MouseState;
 
 typedef struct Mud_AppEvents {
-  Mud_EventCallback onWindowResize;
-  Mud_EventCallback onKeyDown;
-  Mud_EventCallback onKeyUp;
-  Mud_EventCallback onQuit;
+  Mud_GlobalEventCallback onWindowResize;
+  Mud_GlobalEventCallback onKeyDown;
+  Mud_GlobalEventCallback onKeyUp;
+  Mud_GlobalEventCallback onQuit;
 
   Mud_MouseState mouseState;
   atomic_int shouldHandleEvents;

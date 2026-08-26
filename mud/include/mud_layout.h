@@ -10,18 +10,19 @@
 typedef struct Mud_LayoutBox Mud_LayoutBox;
 
 typedef Mud_AppResult (*Mud_RenderFunction)(Mud_LayoutBox*, Mud_App*);
+typedef Mud_BoxEventResult (*Mud_BoxEventCallback)(Mud_Event*, Mud_App*);
 
 struct Mud_LayoutBox {
     bool isActive;
     Mud_Rect renderRect;
     void* renderData;
     Mud_RenderFunction renderFunction;
-    Mud_EventCallback onMouseButtonDown;
-    Mud_EventCallback onMouseButtonUp;
-    Mud_EventCallback onMouseEntered;
-    Mud_EventCallback onMouseHovered;
-    Mud_EventCallback onMouseExited;
-    Mud_EventCallback onMouseWheelScrolled;
+    Mud_BoxEventCallback onMouseButtonDown;
+    Mud_BoxEventCallback onMouseButtonUp;
+    Mud_BoxEventCallback onMouseEntered;
+    Mud_BoxEventCallback onMouseHovered;
+    Mud_BoxEventCallback onMouseExited;
+    Mud_BoxEventCallback onMouseWheelScrolled;
 };
 
 typedef struct Mud_Layout {

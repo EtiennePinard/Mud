@@ -44,6 +44,24 @@ typedef enum Mud_AppResult {
 } Mud_AppResult;
 
 /**
+ * @brief Result returned by a box event callback.
+ *
+ * MUD_PASS_EVENT allows the event to propagate to the next
+ * lower-z-order layout box.
+ *
+ * This propagation behavior applies to discrete box events
+ * such as mouse button and mouse wheel events. Mouse movement
+ * events use the geometrically topmost layout box to determine
+ * hover state and do not propagate through layout boxes.
+ */
+typedef enum Mud_BoxEventResult {
+    MUD_HANDLED_EVENT,
+    MUD_TERMINATE_EVENT_SUCCESS,
+    MUD_TERMINATE_EVENT_FAILURE,
+    MUD_PASS_EVENT
+} Mud_BoxEventResult;
+
+/**
  * @brief A struct representing a rectangle with a
  * x position, y position, width and height.
  *
