@@ -4,7 +4,7 @@
  * @brief This example showcases a typical Mud application lifecycle,
  * which does the following things:
  * 1. Initialize the Mud API, SDL backend, and the scene
- * 2. Uses the mud_widget and mud_common library when rendering and event
+ * 2. Uses the mud_widget and mud_common libraries for rendering and event
  * handling
  * 3. Renders the layout only when needed
  * 4. Terminates
@@ -13,7 +13,6 @@
  */
 
 #include <assert.h>
-#include <mud_layout.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -39,7 +38,7 @@ static inline void setButtonText(HelloWorldSceneData* sceneData) {
 // Event callbacks
 // -----------------------------------------------------------------------------
 
-Mud_AppResult incrementCounter(Mud_Event* event, Mud_App* app) {
+Mud_BoxEventResult incrementCounter(Mud_Event* event, Mud_App* app) {
     // Setting the amount to add base on which mouse button is clicked
     u32 addingToCounter = 1;
     if (event->mouseButton.mouseButtonIndex == MUD_RIGHT_MOUSE_BUTTON) {
@@ -49,7 +48,7 @@ Mud_AppResult incrementCounter(Mud_Event* event, Mud_App* app) {
     sceneData->counter += addingToCounter;
     setButtonText(sceneData);
     MudCommon_requestRenderFromMainThread(app);
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
 
 // -----------------------------------------------------------------------------
@@ -62,18 +61,18 @@ Mud_AppResult incrementCounter(Mud_Event* event, Mud_App* app) {
 Mud_AppResult computeInitialSceneLayout(Mud_App* app) {
     Mud_Rect parentRect = Mud_getWindowRect();
 
-    MudWidget_ButtonStyle helloWorldButton =
-        ((HelloWorldSceneData*)app->scene.data)->buttonstyle;
+    MudWidget_ButtonStyle* helloWorldButton =
+        &((HelloWorldSceneData*)app->scene.data)->buttonstyle;
     Mud_LayoutBox buttonLayoutBox = MudWidget_makeButton(
         MudCommon_centerRectInContainer(
             MudCommon_scaleRectToParent(parentRect, BUTTON_WIDTH_RATIO,
                                         BUTTON_HEIGHT_RATIO),
             parentRect),
-        &helloWorldButton);
+        helloWorldButton);
     buttonLayoutBox.onMouseButtonUp = incrementCounter;
-    buttonLayoutBox.onMouseEntered = MudCommon_eventRequestRerender;
-    buttonLayoutBox.onMouseExited = MudCommon_eventRequestRerender;
-    buttonLayoutBox.onMouseButtonDown = MudCommon_eventRequestRerender;
+    buttonLayoutBox.onMouseEntered = MudCommon_boxEventRequestRerender;
+    buttonLayoutBox.onMouseExited = MudCommon_boxEventRequestRerender;
+    buttonLayoutBox.onMouseButtonDown = MudCommon_boxEventRequestRerender;
     app->scene.sceneLayout.layoutBoxes[0] = buttonLayoutBox;
     return MUD_CONTINUE;
 }

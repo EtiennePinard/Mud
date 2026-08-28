@@ -134,13 +134,13 @@ static inline Mud_Rect MudCommon_centerRectInContainer(Mud_Rect rectToCenter,
 }
 
 /**
- * @brief Request a rerender from the main thread as an event callback.
+ * @brief Request a rerender from the main thread as a box event callback.
  *
- * @param event Any event
+ * @param event Any box event
  * @param app The app to send the main thread rerender request to.
- * @return Mud_AppResult If the operation was successful or not.
+ * @return Mud_BoxEventResult MUD_HANDLED_EVENT
  */
-Mud_AppResult MudCommon_eventRequestRerender(Mud_Event* event, Mud_App* app);
+Mud_BoxEventResult MudCommon_boxEventRequestRerender(Mud_Event* event, Mud_App* app);
 
 /**
  * @brief Sets the rerenderLayoutNextFrame field to MUD_MAIN_THREAD_RERENDER.

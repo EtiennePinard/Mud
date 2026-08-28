@@ -39,8 +39,8 @@ Mud_AppResult MudCommon_addTextureQuad(Mud_App* app, Mud_Rect renderRect,
     return Mud_addPrimitive(app, &textureQuad);
 }
 
-Mud_AppResult MudCommon_eventRequestRerender(Mud_Event* event, Mud_App* app) {
+Mud_BoxEventResult MudCommon_boxEventRequestRerender(Mud_Event* event, Mud_App* app) {
     (void)event;
     MudCommon_requestRenderFromMainThread(app);
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
