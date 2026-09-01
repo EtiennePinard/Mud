@@ -4,7 +4,7 @@
 
 static int wheelCalled = 0;
 
-Mud_AppResult onWheel(Mud_Event* event, Mud_App* app) {
+Mud_BoxEventResult onWheel(Mud_Event* event, Mud_App* app) {
     (void)app;
 
     wheelCalled++;
@@ -12,7 +12,7 @@ Mud_AppResult onWheel(Mud_Event* event, Mud_App* app) {
     check(event->mouseWheel.x == 1);
     check(event->mouseWheel.y == -2);
 
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
 
 int main(void) {

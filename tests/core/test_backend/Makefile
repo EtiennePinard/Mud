@@ -1,14 +1,10 @@
-include ../../../.env
-
 NAME = test_backend
 SRC_DIR = src
 BUILD_DIR = build
 
-INCLUDES = \
- -Iinclude \
- -I"${MUD_INCLUDE_PATH}"
+INCLUDES = -Iinclude -I../../../mud/include
 
-PREFIX ?= /usr/local
+PREFIX ?= /don't/install/this/backend
 
 RULE_DIR = ../../../mk
 include $(RULE_DIR)/library.mk

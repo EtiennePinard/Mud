@@ -3,10 +3,13 @@ RULE_DIR ?= ../../mk
 include $(RULE_DIR)/rules.mk
 CFLAGS += -fPIC
 
+BUILD_DIR ?= build
+NAME ?= mud_library
+
 LIB_NAME := lib$(NAME).so
 LIB_PATH := $(BUILD_DIR)/$(LIB_NAME)
 
-.PHONY: all install clean
+.PHONY: all install clean help
 
 all: $(LIB_PATH)
 
@@ -27,5 +30,5 @@ clean:
 
 help:
 	@echo "make all     \t - Creates the shared library file at $(LIB_PATH)"
-	@echo "make install \t - Installs the $(NAME) headers and shared library to $(PREFIX)/lib and $(PREFIX)/include"
+	@echo "make install \t - Installs the $(NAME) headers and shared library to $(PREFIX)/lib and $(PREFIX)/include. Change the PREFIX variable to the location to PREFIX/lib and PREFIX/include"
 	@echo "make clean   \t - Removes the $(BUILD_DIR) directory"

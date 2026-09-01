@@ -10,21 +10,18 @@ Mud_AppResult test_backendInit(void* options) {
     return MUD_CONTINUE;
 }
 static int backendTerminateCalled = 0;
-void test_backendTerminate() {
-    backendTerminateCalled++;
-}
-static MudTestBackend_Options backendOptions = {
-    .init = test_backendInit,
-    .terminate = test_backendTerminate
-};
+void test_backendTerminate() { backendTerminateCalled++; }
+static MudTestBackend_Options backendOptions = { .init = test_backendInit,
+                                                 .terminate =
+                                                     test_backendTerminate };
 
 #define SCENE_DATA (42)
 static int sceneData = SCENE_DATA;
 static int terminateSceneCalled = 0;
-void test_sceneTerminate(void* data, Mud_AppResult result) {
+void test_sceneTerminate(Mud_Scene* scene, Mud_AppResult result) {
     terminateSceneCalled++;
     check(result == MUD_TERMINATE_WITH_SUCCESS);
-    check(*((int*)data) == SCENE_DATA);
+    check(*((int*)scene->data) == SCENE_DATA);
 }
 
 int main(void) {

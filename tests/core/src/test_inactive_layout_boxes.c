@@ -16,26 +16,26 @@ static MudTestBackend_Options backendOptions = {
 
 static int topBoxClicked = 0;
 static int bottomBoxClicked = 0;
-Mud_AppResult onTopBoxClick(Mud_Event* e, Mud_App* app) {
+Mud_BoxEventResult onTopBoxClick(Mud_Event* e, Mud_App* app) {
     (void)e; (void)app;
     topBoxClicked++;
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
-Mud_AppResult onBottomBoxClick(Mud_Event* e, Mud_App* app) {
+Mud_BoxEventResult onBottomBoxClick(Mud_Event* e, Mud_App* app) {
     (void)e; (void)app;
     bottomBoxClicked++;
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
 
 static int topBoxRendered = 0;
 static int bottomBoxRendered = 0;
-Mud_AppResult bottomBoxRender(Mud_Rect rect, Mud_App* app) {
-    (void)rect; (void)app;
+Mud_AppResult bottomBoxRender(Mud_LayoutBox* box, Mud_App* app) {
+    (void)box; (void)app;
     bottomBoxRendered++;
     return MUD_CONTINUE;
 }
-Mud_AppResult topBoxRender(Mud_Rect rect, Mud_App* app) {
-    (void)rect; (void)app;
+Mud_AppResult topBoxRender(Mud_LayoutBox* box, Mud_App* app) {
+    (void)box; (void)app;
     topBoxRendered++;
     return MUD_CONTINUE;
 }

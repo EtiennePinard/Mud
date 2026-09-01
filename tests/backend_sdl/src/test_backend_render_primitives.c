@@ -33,20 +33,20 @@ static Mud_Primitive textureQuad = {
     }
 };
 
-static Mud_AppResult renderFilledQuad(Mud_Rect rect, Mud_App* app) {
-    (void)rect;
+static Mud_AppResult renderFilledQuad(Mud_LayoutBox* box, Mud_App* app) {
+    (void)box;
     return Mud_addPrimitive(app, &filledQuad);
 }
-static Mud_AppResult renderBorderQuad(Mud_Rect rect, Mud_App* app) {
-    (void)rect;
+static Mud_AppResult renderBorderQuad(Mud_LayoutBox* box, Mud_App* app) {
+    (void)box;
     return Mud_addPrimitive(app, &borderQuad);
 }
-static Mud_AppResult renderText(Mud_Rect rect, Mud_App* app) {
-    (void)rect;
+static Mud_AppResult renderText(Mud_LayoutBox* box, Mud_App* app) {
+    (void)box;
     return Mud_addPrimitive(app, &text);
 }
-static Mud_AppResult renderTextureQuad(Mud_Rect rect, Mud_App* app) {
-    (void)rect;
+static Mud_AppResult renderTextureQuad(Mud_LayoutBox* box, Mud_App* app) {
+    (void)box;
     return Mud_addPrimitive(app, &textureQuad);
 }
 

@@ -6,23 +6,23 @@
 static int mouseButtonDownCalled = 0;
 static int mouseButtonUpCalled = 0;
 
-Mud_AppResult onMouseButtonDown(Mud_Event* event, Mud_App* app) {
+Mud_BoxEventResult onMouseButtonDown(Mud_Event* event, Mud_App* app) {
     (void)app;
 
     check(event->mouseButton.mouseButtonIndex == MUD_RIGHT_MOUSE_BUTTON);
     mouseButtonDownCalled++;
 
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
 
-Mud_AppResult onMouseButtonUp(Mud_Event* event, Mud_App* app) {
+Mud_BoxEventResult onMouseButtonUp(Mud_Event* event, Mud_App* app) {
     (void)event;
     (void)app;
 
     check(event->mouseButton.mouseButtonIndex == MUD_RIGHT_MOUSE_BUTTON);
     mouseButtonUpCalled++;
 
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
 
 int main(void) {

@@ -9,7 +9,8 @@
  *
  * @param options A pointer to options to the backend. The format of
  * the option data are defined by each backend. This pointer can be NULL.
- * @return Mud_AppResult If the app should continue or terminate with failure or success
+ * @return Mud_AppResult If the app should continue or terminate with failure or
+ * success
  */
 MUD_API extern Mud_AppResult MudBackend_init(void* options);
 
@@ -26,7 +27,8 @@ MUD_API extern void MudBackend_terminate();
  * and clear the screen with the clear color.
  *
  * @param clearColor The color to clear the screen with
- * @return Mud_AppResult If the app should continue or terminate with failure or success
+ * @return Mud_AppResult If the app should continue or terminate with failure or
+ * success
  */
 MUD_API extern Mud_AppResult MudBackend_prepareRender(Mud_Color clearColor);
 
@@ -34,16 +36,19 @@ MUD_API extern Mud_AppResult MudBackend_prepareRender(Mud_Color clearColor);
  * @brief Renders a Mud primitive to the screen.
  *
  * @param primitive The primitive to render
- * @return Mud_AppResult If the app should continue or terminate with failure or success
+ * @return Mud_AppResult If the app should continue or terminate with failure or
+ * success
  */
-MUD_API extern Mud_AppResult MudBackend_renderPrimitive(Mud_Primitive* primitive);
+MUD_API extern Mud_AppResult
+MudBackend_renderPrimitive(Mud_Primitive* primitive);
 
 /**
  * @brief Finishes the rendering process. This function is called
  * after all primitives are done rendering.
  *
  * @param clearColor
- * @return Mud_AppResult If the app should continue or terminate with failure or success
+ * @return Mud_AppResult If the app should continue or terminate with failure or
+ * success
  */
 MUD_API extern Mud_AppResult MudBackend_finishRender();
 
@@ -53,15 +58,16 @@ MUD_API extern Mud_AppResult MudBackend_finishRender();
  * parameter.
  *
  * @param outEvent A pointer to place the popped event into
- * @return Mud_AppResult If the app should continue or terminate with failure or success
+ * @return Mud_AppResult If the app should continue or terminate with failure or
+ * success
  */
 MUD_API extern Mud_AppResult MudBackend_popEvent(Mud_Event* outEvent);
 
 /**
- * @brief Returns the rectangle defining the window. The width and height of 
+ * @brief Returns the rectangle defining the window. The width and height of
  * the rect is the window size, and this rectangle is positioned at (0, 0).
- * 
- * @return Mud_Rect The window's rectangle. 
+ *
+ * @return Mud_Rect The window's rectangle.
  */
 MUD_API extern Mud_Rect MudBackend_getWindowRect();
 

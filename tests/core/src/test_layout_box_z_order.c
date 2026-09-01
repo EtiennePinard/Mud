@@ -16,37 +16,37 @@ static int bottomClicked = 0;
 static int topClicked = 0;
 static int bottomHovered = 0;
 static int topHovered = 0;
-Mud_AppResult onBottomClick(Mud_Event* e, Mud_App* app) {
+Mud_BoxEventResult onBottomClick(Mud_Event* e, Mud_App* app) {
     (void)e; (void)app;
     bottomClicked++;
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
-Mud_AppResult onTopClick(Mud_Event* e, Mud_App* app) {
+Mud_BoxEventResult onTopClick(Mud_Event* e, Mud_App* app) {
     (void)e; (void)app;
     topClicked++;
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
-Mud_AppResult onBottomHover(Mud_Event* e, Mud_App* app) {
+Mud_BoxEventResult onBottomHover(Mud_Event* e, Mud_App* app) {
     (void)e; (void)app;
     bottomHovered++;
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
-Mud_AppResult onTopHover(Mud_Event* e, Mud_App* app) {
+Mud_BoxEventResult onTopHover(Mud_Event* e, Mud_App* app) {
     (void)e; (void)app;
     topHovered++;
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
 
 static int bottomRendered = 0;
 static int topRendered = 0;
-Mud_AppResult renderBottom(Mud_Rect rect, Mud_App* app) {
-    (void)rect, (void)app;
+Mud_AppResult renderBottom(Mud_LayoutBox* box, Mud_App* app) {
+    (void)box, (void)app;
     check(bottomRendered == topRendered);
     bottomRendered++;
     return MUD_CONTINUE;
 }
-Mud_AppResult renderTop(Mud_Rect rect, Mud_App* app) {
-    (void)rect, (void)app;
+Mud_AppResult renderTop(Mud_LayoutBox* box, Mud_App* app) {
+    (void)box, (void)app;
     check(bottomRendered == topRendered + 1);
     topRendered++;
     return MUD_CONTINUE;

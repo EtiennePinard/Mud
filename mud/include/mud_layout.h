@@ -4,22 +4,26 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "mud_types.h"
 #include "mud_events.h"
+#include "mud_types.h"
 
-typedef Mud_AppResult(*Mud_RenderFunction)(Mud_Rect, Mud_App*);
+typedef struct Mud_LayoutBox Mud_LayoutBox;
 
-typedef struct Mud_LayoutBox {
+typedef Mud_AppResult (*Mud_RenderFunction)(Mud_LayoutBox*, Mud_App*);
+typedef Mud_BoxEventResult (*Mud_BoxEventCallback)(Mud_Event*, Mud_App*);
+
+struct Mud_LayoutBox {
     bool isActive;
     Mud_Rect renderRect;
+    void* renderData;
     Mud_RenderFunction renderFunction;
-    Mud_EventCallback onMouseButtonDown;
-    Mud_EventCallback onMouseButtonUp;
-    Mud_EventCallback onMouseEntered;
-    Mud_EventCallback onMouseHovered;
-    Mud_EventCallback onMouseExited;
-    Mud_EventCallback onMouseWheelScrolled;
-} Mud_LayoutBox;
+    Mud_BoxEventCallback onMouseButtonDown;
+    Mud_BoxEventCallback onMouseButtonUp;
+    Mud_BoxEventCallback onMouseEntered;
+    Mud_BoxEventCallback onMouseHovered;
+    Mud_BoxEventCallback onMouseExited;
+    Mud_BoxEventCallback onMouseWheelScrolled;
+};
 
 typedef struct Mud_Layout {
     Mud_Color bgColor;
@@ -28,9 +32,10 @@ typedef struct Mud_Layout {
 } Mud_Layout;
 
 /**
- * @brief Gets the window rectangle. This window is not necessarily a GUI window, it
- * is the size of the thing that the Mud_Layout will render to. The width and height of
- * the rect is the window size, and this rectangle is positioned at x = 0, y = 0.
+ * @brief Gets the window rectangle. This window is not necessarily a GUI
+ * window, it is the size of the thing that the Mud_Layout will render to. The
+ * width and height of the rect is the window size, and this rectangle is
+ * positioned at x = 0, y = 0.
  *
  * @return Mud_Rect The window's rectangle.
  */

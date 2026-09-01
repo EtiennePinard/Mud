@@ -1,8 +1,8 @@
-#include <string.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#include "mud_backend.h"
+#include "../include/mud_backend.h"
 
 #define INITIAL_RENDER_QUEUE_SIZE (16)
 
@@ -30,7 +30,8 @@ Mud_AppResult Mud_init(Mud_App* app, void* backendOption) {
 
     // Initialize commands
     app->renderQueue.capacity = INITIAL_RENDER_QUEUE_SIZE;
-    app->renderQueue.commands = malloc(app->renderQueue.capacity * sizeof(Mud_Primitive));
+    app->renderQueue.commands =
+        malloc(app->renderQueue.capacity * sizeof(Mud_Primitive));
     if (app->renderQueue.commands == NULL) {
         // We are missing memory
         return MUD_TERMINATE_WITH_FAILURE;
@@ -52,7 +53,7 @@ void Mud_terminate(Mud_App* app, Mud_AppResult result) {
     }
 
     if (app->scene.terminateSceneFunction) {
-        app->scene.terminateSceneFunction(app->scene.data, result);
+        app->scene.terminateSceneFunction(&app->scene, result);
     }
 
     // Cleaning up after ourselves
@@ -64,7 +65,4 @@ void Mud_terminate(Mud_App* app, Mud_AppResult result) {
     MudBackend_terminate();
 }
 
-
-const char* Mud_getVersion(void) {
-    return MUD_VERSION_STRING;
-}
+const char* Mud_getVersion(void) { return MUD_VERSION_STRING; }

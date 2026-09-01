@@ -1,5 +1,3 @@
-include ../../.env
-
 DEBUG = 1
 
 SRC_DIR = src

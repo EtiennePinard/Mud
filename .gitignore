@@ -12,3 +12,6 @@ temp
 
 # environment variables
 .env
+
+# cache from C LSP
+.ccls-cache

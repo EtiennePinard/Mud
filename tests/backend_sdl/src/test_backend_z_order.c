@@ -21,13 +21,13 @@ Mud_Primitive bottomQuad = {
     }
 };
 
-static Mud_AppResult renderTop(Mud_Rect rect, Mud_App* app) { 
-    (void) rect;
+static Mud_AppResult renderTop(Mud_LayoutBox* box, Mud_App* app) { 
+    (void) box;
     return Mud_addPrimitive(app, &topQuad);
 }
 
-static Mud_AppResult renderBottom(Mud_Rect rect, Mud_App* app) {
-    (void) rect;
+static Mud_AppResult renderBottom(Mud_LayoutBox* box, Mud_App* app) {
+    (void) box;
     return Mud_addPrimitive(app, &bottomQuad);
 }
 

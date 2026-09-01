@@ -2,11 +2,15 @@
 
 #include "sdl_internalState.h"
 
-MudSDLBackend_TextureData* MudSDLBackend_createTexture(MudSDLBackend_TextureData* data, const char* filename, bool freeAfterRendering) {
+MudSDLBackend_TextureData*
+MudSDLBackend_createTexture(MudSDLBackend_TextureData* data,
+                            const char* filename, bool freeAfterRendering) {
     SDL_Texture* texture = IMG_LoadTexture(state.renderer, filename);
 
     if (!texture) {
-        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to create texture from file %s with error %s\n", filename, SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR,
+                     "Failed to create texture from file %s with error %s\n",
+                     filename, SDL_GetError());
         return NULL;
     }
 

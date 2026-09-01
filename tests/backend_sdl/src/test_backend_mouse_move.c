@@ -5,13 +5,13 @@
 
 static int hoveredCalled = 0;
 
-Mud_AppResult onHover(Mud_Event* event, Mud_App* app) {
+Mud_BoxEventResult onHover(Mud_Event* event, Mud_App* app) {
     (void)event;
     (void)app;
 
     hoveredCalled++;
 
-    return MUD_CONTINUE;
+    return MUD_HANDLED_EVENT;
 }
 
 int main(void) {

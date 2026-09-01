@@ -7,15 +7,17 @@
 
 #define STRINGIFY(x) #x
 #define TO_STRING(x) STRINGIFY(x)
-#define MUD_VERSION_STRING (TO_STRING(MUD_VERSION_MAJOR) "." TO_STRING(MUD_VERSION_MINOR) "." TO_STRING(MUD_VERSION_PATCH))
+#define MUD_VERSION_STRING                                                     \
+    (TO_STRING(MUD_VERSION_MAJOR) "." TO_STRING(                               \
+        MUD_VERSION_MINOR) "." TO_STRING(MUD_VERSION_PATCH))
 
-#include "mud_types.h"
-#include "mud_primitives.h"
-#include "mud_render.h"
+#include "mud_app.h"
 #include "mud_events.h"
 #include "mud_layout.h"
+#include "mud_primitives.h"
+#include "mud_render.h"
 #include "mud_scene.h"
-#include "mud_app.h"
+#include "mud_types.h"
 
 struct Mud_App {
     // All data needed for rendering the app
@@ -40,7 +42,8 @@ struct Mud_App {
  * @param backendOption Options to be passed to the backend. The format
  * of the options are defined by which backend is used. These options
  * can include window options, like the window's name and size.
- * @return Mud_AppResult If the app should continue or terminate with success or failure
+ * @return Mud_AppResult If the app should continue or terminate with success or
+ * failure
  */
 MUD_API Mud_AppResult Mud_init(Mud_App* app, void* backendOption);
 
